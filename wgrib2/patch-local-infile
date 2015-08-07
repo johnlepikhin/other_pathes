@@ -1,0 +1,13 @@
+Index: grib2/wgrib2/Mysql.c
+===================================================================
+--- grib2.orig/wgrib2/Mysql.c
++++ grib2/wgrib2/Mysql.c
+@@ -78,6 +78,8 @@ int f_mysql(ARG5) {
+ 
+ 	save->conn = mysql_init(NULL);
+ 
++	mysql_options(save->conn, MYSQL_OPT_LOCAL_INFILE, NULL);
++
+ 	/* Connect to database */
+ 	if (!mysql_real_connect(save->conn, server, user, password, database, 0, NULL, 0))
+ 	    fatal_error("mysql error %s", mysql_error(save->conn));
